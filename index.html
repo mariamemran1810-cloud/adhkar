@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أذكاري ✨ أذكار الصباح والمساء</title>
+  <meta name="description" content="موقع أذكار الصباح والمساء والنوم مع السُبحة الإلكترونية وعدّاد الاستغفار">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- خلفية زخرفية -->
+  <div class="bg-decor">
+    <span class="blob blob-1"></span>
+    <span class="blob blob-2"></span>
+    <span class="blob blob-3"></span>
+    <span class="sparkle s1">✦</span>
+    <span class="sparkle s2">✧</span>
+    <span class="sparkle s3">✦</span>
+    <span class="sparkle s4">✧</span>
+  </div>
+
+  <!-- الشريط العلوي -->
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-icon">🌷</span>
+      <div>
+        <h1>أذكاري</h1>
+        <p>سكينة القلب في كل وقت</p>
+      </div>
+    </div>
+    <button id="themeBtn" class="icon-btn" title="تبديل الوضع الليلي" aria-label="تبديل الوضع">🌙</button>
+  </header>
+
+  <!-- التنقل -->
+  <nav class="tabs" id="tabs">
+    <button class="tab active" data-tab="morning"><span>🌅</span> أذكار الصباح</button>
+    <button class="tab" data-tab="evening"><span>🌇</span> أذكار المساء</button>
+    <button class="tab" data-tab="sleep"><span>🌜</span> أذكار النوم</button>
+    <button class="tab" data-tab="tasbih"><span>📿</span> السُبحة</button>
+    <button class="tab" data-tab="istighfar"><span>🤍</span> الاستغفار</button>
+  </nav>
+
+  <main class="container">
+
+    <!-- أذكار الصباح -->
+    <section class="panel active" id="morning">
+      <div class="section-head">
+        <h2>🌅 أذكار الصباح</h2>
+        <p>تُقال بعد الفجر حتى الضحى — اجعلي صباحكِ نوراً وذكراً</p>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-bar"><span id="mProgress"></span></div>
+        <span class="progress-text" id="mProgressText">0 / 0</span>
+      </div>
+      <div class="cards" id="morningCards"></div>
+    </section>
+
+    <!-- أذكار المساء -->
+    <section class="panel" id="evening">
+      <div class="section-head">
+        <h2>🌇 أذكار المساء</h2>
+        <p>تُقال بعد العصر حتى المغرب — اختمي يومكِ بالطمأنينة</p>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-bar"><span id="eProgress"></span></div>
+        <span class="progress-text" id="eProgressText">0 / 0</span>
+      </div>
+      <div class="cards" id="eveningCards"></div>
+    </section>
+
+    <!-- أذكار النوم -->
+    <section class="panel" id="sleep">
+      <div class="section-head">
+        <h2>🌜 أذكار النوم</h2>
+        <p>نم قرير العين بذكر الله — راحة وسكينة</p>
+      </div>
+      <div class="cards" id="sleepCards"></div>
+    </section>
+
+    <!-- السُبحة -->
+    <section class="panel" id="tasbih">
+      <div class="section-head">
+        <h2>📿 السُبحة الإلكترونية</h2>
+        <p>اختاري الذكر وابدئي التسبيح بحرية</p>
+      </div>
+
+      <div class="dhikr-picker" id="dhikrPicker">
+        <button class="dhikr-chip active" data-dhikr="سُبْحَانَ اللَّهِ">سُبْحَانَ اللَّهِ</button>
+        <button class="dhikr-chip" data-dhikr="الْحَمْدُ لِلَّهِ">الْحَمْدُ لِلَّهِ</button>
+        <button class="dhikr-chip" data-dhikr="اللَّهُ أَكْبَرُ">اللَّهُ أَكْبَرُ</button>
+        <button class="dhikr-chip" data-dhikr="لَا إِلَٰهَ إِلَّا اللَّهُ">لَا إِلَٰهَ إِلَّا اللَّهُ</button>
+        <button class="dhikr-chip" data-dhikr="لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ">لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ</button>
+      </div>
+
+      <div class="beads-stage">
+        <div class="bead-ring">
+          <div class="bead-track" id="beadTrack"></div>
+        </div>
+        <button class="tasbih-btn" id="tasbihBtn">
+          <span class="tasbih-count" id="tasbihCount">0</span>
+          <span class="tasbih-hint">اضغطي للتسبيح</span>
+        </button>
+      </div>
+
+      <p class="current-dhikr" id="currentDhikr">سُبْحَانَ اللَّهِ</p>
+
+      <div class="tasbih-actions">
+        <button class="btn-soft" id="tasbihReset">↺ تصفير</button>
+        <div class="target-select">
+          <label for="tasbihTarget">الهدف:</label>
+          <select id="tasbihTarget">
+            <option value="33">33</option>
+            <option value="99" selected>99</option>
+            <option value="100">100</option>
+            <option value="1000">1000</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- الاستغفار -->
+    <section class="panel" id="istighfar">
+      <div class="section-head">
+        <h2>🤍 الاستغفار</h2>
+        <p>أستغفر الله العظيم وأتوب إليه</p>
+      </div>
+
+      <div class="istighfar-card">
+        <div class="istighfar-text" id="istighfarText">أَسْتَغْفِرُ اللَّهَ الْعَظِيمَ وَأَتُوبُ إِلَيْهِ</div>
+        <button class="istighfar-btn" id="istighfarBtn">
+          <span class="istighfar-count" id="istighfarCount">0</span>
+        </button>
+        <div class="istighfar-actions">
+          <button class="btn-soft" id="istighfarReset">↺ تصفير</button>
+          <button class="btn-soft" id="istighfarSave">💾 حفظ العدد</button>
+        </div>
+        <p class="saved-note" id="savedNote"></p>
+      </div>
+
+      <div class="benefits">
+        <h3>🕊️ فضل الاستغفار</h3>
+        <ul>
+          <li>🌿 سبب لتفريج الهموم والغموم</li>
+          <li>💧 سبب لنزول الغيث وسعة الرزق</li>
+          <li>🕊️ سبب لمغفرة الذنوب وقبول التوبة</li>
+          <li>✨ سبب لقوة البدن وبركة العمر</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>صُنع بحب 🤍 — «أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ»</p>
+  </footer>
+
+  <!-- نافذة تأكيد الإكمال -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
