@@ -1,0 +1,243 @@
+/* ===================== أساسيات ===================== */
+:root{
+  --pink-1:#ffe3ee;
+  --pink-2:#ffd0e2;
+  --pink-3:#ffb3cf;
+  --pink-4:#ff8fb8;
+  --pink-5:#f56aa1;
+  --rose:#e8538a;
+  --plum:#7a3b63;
+  --cream:#fff8fb;
+  --white:#ffffff;
+  --text:#5c2f4d;
+  --text-soft:#8a5f7c;
+  --shadow:0 12px 30px rgba(232,83,138,.18);
+  --shadow-soft:0 6px 18px rgba(232,83,138,.12);
+  --radius:22px;
+  --glass:rgba(255,255,255,.72);
+  --grad:linear-gradient(135deg,#ff9ec4 0%,#e8538a 55%,#c94d9b 100%);
+}
+
+body.dark{
+  --pink-1:#3a1f2e;
+  --pink-2:#4a2740;
+  --pink-3:#6b3456;
+  --text:#ffe3ee;
+  --text-soft:#e0a9c6;
+  --cream:#231420;
+  --white:#2c1a27;
+  --glass:rgba(58,31,46,.7);
+  --shadow:0 12px 30px rgba(0,0,0,.4);
+  --shadow-soft:0 6px 18px rgba(0,0,0,.3);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:'Tajawal',system-ui,sans-serif;
+  background:linear-gradient(160deg,#fff0f6 0%,#ffe3ee 40%,#ffd9ea 100%);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+  transition:background .4s ease,color .4s ease;
+}
+body.dark{background:linear-gradient(160deg,#231420 0%,#3a1f2e 50%,#2c1a27 100%);}
+
+/* ===================== خلفية زخرفية ===================== */
+.bg-decor{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;animation:float 14s ease-in-out infinite;}
+.blob-1{width:340px;height:340px;background:#ffb3cf;top:-80px;right:-60px;}
+.blob-2{width:300px;height:300px;background:#d9a7ff;bottom:-80px;left:-60px;animation-delay:-4s;}
+.blob-3{width:260px;height:260px;background:#ffd6a8;top:40%;left:45%;animation-delay:-8s;}
+@keyframes float{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-30px) scale(1.08);}}
+
+.sparkle{position:absolute;color:#fff;font-size:22px;opacity:.8;animation:twinkle 3s ease-in-out infinite;}
+.s1{top:15%;left:12%;}.s2{top:30%;right:15%;animation-delay:.5s;}
+.s3{bottom:20%;left:20%;animation-delay:1s;}.s4{bottom:35%;right:25%;animation-delay:1.5s;}
+@keyframes twinkle{0%,100%{opacity:.2;transform:scale(.8);}50%{opacity:.9;transform:scale(1.2);}}
+
+/* ===================== الهيدر ===================== */
+.site-header{
+  position:relative;z-index:2;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px clamp(16px,5vw,60px);
+}
+.brand{display:flex;align-items:center;gap:14px;}
+.brand-icon{
+  font-size:34px;background:var(--glass);backdrop-filter:blur(10px);
+  width:64px;height:64px;display:grid;place-items:center;border-radius:20px;
+  box-shadow:var(--shadow-soft);animation:wiggle 4s ease-in-out infinite;
+}
+@keyframes wiggle{0%,100%{transform:rotate(-6deg);}50%{transform:rotate(6deg);}}
+.brand h1{font-size:clamp(24px,4vw,34px);font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.brand p{font-size:14px;color:var(--text-soft);font-weight:500;}
+
+.icon-btn{
+  border:none;cursor:pointer;font-size:22px;
+  width:52px;height:52px;border-radius:50%;
+  background:var(--glass);backdrop-filter:blur(10px);
+  box-shadow:var(--shadow-soft);transition:.3s;
+}
+.icon-btn:hover{transform:scale(1.1) rotate(15deg);}
+
+/* ===================== التبويبات ===================== */
+.tabs{
+  position:relative;z-index:2;
+  display:flex;flex-wrap:wrap;gap:10px;justify-content:center;
+  padding:8px clamp(16px,5vw,60px) 24px;
+}
+.tab{
+  font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;
+  display:flex;align-items:center;gap:7px;
+  padding:12px 20px;border-radius:50px;border:2px solid transparent;
+  background:var(--glass);backdrop-filter:blur(10px);
+  color:var(--text-soft);box-shadow:var(--shadow-soft);transition:.3s;
+}
+.tab span{font-size:18px;}
+.tab:hover{transform:translateY(-3px);color:var(--rose);}
+.tab.active{background:var(--grad);color:#fff;box-shadow:var(--shadow);transform:translateY(-3px);}
+
+/* ===================== الحاويات ===================== */
+.container{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:0 clamp(16px,5vw,40px) 60px;}
+.panel{display:none;animation:fadeUp .5s ease;}
+.panel.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+.section-head{text-align:center;margin-bottom:26px;}
+.section-head h2{font-size:clamp(22px,4vw,30px);font-weight:800;color:var(--rose);margin-bottom:8px;}
+.section-head p{color:var(--text-soft);font-size:15px;}
+
+/* ===================== شريط التقدم ===================== */
+.progress-wrap{display:flex;align-items:center;gap:14px;margin-bottom:22px;}
+.progress-bar{flex:1;height:14px;background:var(--glass);border-radius:50px;overflow:hidden;box-shadow:inset 0 2px 6px rgba(232,83,138,.15);}
+.progress-bar span{display:block;height:100%;width:0;background:var(--grad);border-radius:50px;transition:width .5s cubic-bezier(.4,0,.2,1);}
+.progress-text{font-weight:700;color:var(--rose);font-size:14px;white-space:nowrap;}
+
+/* ===================== كروت الأذكار ===================== */
+.cards{display:flex;flex-direction:column;gap:18px;}
+.card{
+  background:var(--white);border-radius:var(--radius);
+  padding:22px;box-shadow:var(--shadow-soft);
+  border:1px solid var(--pink-2);position:relative;overflow:hidden;
+  transition:.35s;
+}
+.card::before{content:"";position:absolute;top:0;right:0;width:5px;height:100%;background:var(--grad);opacity:.7;}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+.card.done{border-color:var(--pink-5);background:linear-gradient(135deg,var(--pink-1),var(--white));}
+.card.done::before{opacity:1;width:7px;}
+.card-text{font-family:'Amiri',serif;font-size:20px;line-height:2;color:var(--text);margin-bottom:14px;}
+.card-meta{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;}
+.card-count{font-size:13px;color:var(--text-soft);font-weight:600;background:var(--pink-1);padding:5px 12px;border-radius:50px;}
+.card-btns{display:flex;gap:8px;}
+.count-btn,.reset-btn{
+  font-family:inherit;cursor:pointer;border:none;border-radius:50px;font-weight:700;transition:.25s;
+}
+.count-btn{
+  background:var(--grad);color:#fff;padding:9px 20px;font-size:15px;
+  box-shadow:0 4px 12px rgba(232,83,138,.35);
+}
+.count-btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(232,83,138,.45);}
+.count-btn:active{transform:scale(.95);}
+.count-btn.finished{background:linear-gradient(135deg,#8cd98c,#5cb85c);}
+.reset-btn{background:var(--pink-1);color:var(--rose);width:38px;height:38px;font-size:16px;}
+.reset-btn:hover{transform:rotate(-90deg);}
+
+/* ===================== السُبحة ===================== */
+.dhikr-picker{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:34px;}
+.dhikr-chip{
+  font-family:'Amiri',serif;font-size:16px;cursor:pointer;
+  padding:10px 18px;border-radius:50px;border:2px solid var(--pink-3);
+  background:var(--white);color:var(--text-soft);font-weight:700;transition:.3s;
+}
+.dhikr-chip:hover{border-color:var(--pink-5);transform:translateY(-2px);}
+.dhikr-chip.active{background:var(--grad);color:#fff;border-color:transparent;box-shadow:var(--shadow-soft);}
+
+.beads-stage{position:relative;display:grid;place-items:center;height:340px;margin-bottom:20px;}
+.bead-ring{position:absolute;inset:0;display:grid;place-items:center;}
+.bead-track{position:relative;width:300px;height:300px;}
+.bead{
+  position:absolute;width:20px;height:20px;border-radius:50%;
+  background:var(--pink-2);box-shadow:inset 0 -2px 4px rgba(232,83,138,.25);
+  transform:translate(-50%,-50%);transition:.3s;
+}
+.bead.lit{background:var(--grad);transform:translate(-50%,-50%) scale(1.35);box-shadow:0 0 14px rgba(232,83,138,.7);}
+
+.tasbih-btn{
+  position:relative;z-index:3;cursor:pointer;border:none;
+  width:180px;height:180px;border-radius:50%;
+  background:var(--grad);color:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  box-shadow:0 16px 40px rgba(232,83,138,.45),inset 0 -6px 16px rgba(0,0,0,.15);
+  transition:.15s;
+}
+.tasbih-btn:hover{transform:scale(1.04);}
+.tasbih-btn:active{transform:scale(.93);}
+.tasbih-count{font-size:52px;font-weight:800;line-height:1;}
+.tasbih-hint{font-size:13px;opacity:.9;font-weight:500;}
+.tasbih-btn.pulse,.istighfar-btn.pulse{animation:pulse .4s ease;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(232,83,138,.6);}100%{box-shadow:0 0 0 30px rgba(232,83,138,0);}}
+
+.current-dhikr{font-family:'Amiri',serif;text-align:center;font-size:22px;color:var(--rose);font-weight:700;margin-bottom:22px;}
+.tasbih-actions{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;}
+.btn-soft{
+  font-family:inherit;cursor:pointer;font-size:15px;font-weight:700;
+  padding:11px 24px;border-radius:50px;border:2px solid var(--pink-3);
+  background:var(--white);color:var(--rose);transition:.3s;
+}
+.btn-soft:hover{background:var(--pink-1);transform:translateY(-2px);}
+.target-select{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--text-soft);}
+.target-select select{
+  font-family:inherit;font-size:15px;font-weight:700;color:var(--rose);
+  padding:10px 16px;border-radius:50px;border:2px solid var(--pink-3);
+  background:var(--white);cursor:pointer;
+}
+
+/* ===================== الاستغفار ===================== */
+.istighfar-card{
+  background:var(--white);border-radius:var(--radius);
+  padding:36px 24px;box-shadow:var(--shadow);text-align:center;margin-bottom:24px;
+  border:1px solid var(--pink-2);
+}
+.istighfar-text{font-family:'Amiri',serif;font-size:26px;line-height:1.9;color:var(--rose);font-weight:700;margin-bottom:26px;}
+.istighfar-btn{
+  cursor:pointer;border:none;width:150px;height:150px;border-radius:50%;
+  background:var(--grad);color:#fff;font-weight:800;
+  box-shadow:0 14px 36px rgba(232,83,138,.45),inset 0 -6px 16px rgba(0,0,0,.12);
+  transition:.15s;margin-bottom:24px;
+}
+.istighfar-btn:hover{transform:scale(1.05);}
+.istighfar-btn:active{transform:scale(.92);}
+.istighfar-count{font-size:46px;}
+.istighfar-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;}
+.saved-note{color:#5cb85c;font-weight:700;margin-top:14px;font-size:14px;min-height:20px;}
+
+.benefits{background:var(--glass);backdrop-filter:blur(10px);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow-soft);}
+.benefits h3{color:var(--rose);margin-bottom:14px;font-size:19px;}
+.benefits ul{list-style:none;display:flex;flex-direction:column;gap:12px;}
+.benefits li{font-size:16px;color:var(--text);background:var(--white);padding:12px 16px;border-radius:14px;box-shadow:var(--shadow-soft);}
+
+/* ===================== الفوتر ===================== */
+.site-footer{position:relative;z-index:2;text-align:center;padding:30px 16px;color:var(--text-soft);font-size:15px;font-weight:500;}
+
+/* ===================== التوست ===================== */
+.toast{
+  position:fixed;bottom:30px;left:50%;transform:translate(-50%,120px);
+  background:var(--grad);color:#fff;padding:14px 28px;border-radius:50px;
+  font-weight:700;box-shadow:var(--shadow);z-index:99;transition:.4s cubic-bezier(.4,0,.2,1);
+  opacity:0;pointer-events:none;
+}
+.toast.show{transform:translate(-50%,0);opacity:1;}
+
+/* ===================== استجابة ===================== */
+@media(max-width:520px){
+  .site-header{flex-direction:column;gap:12px;text-align:center;}
+  .brand{flex-direction:column;}
+  .tab{font-size:13px;padding:10px 14px;}
+  .bead-track{width:250px;height:250px;}
+  .tasbih-btn{width:150px;height:150px;}
+  .tasbih-count{font-size:44px;}
+  .beads-stage{height:290px;}
+  .card-text{font-size:18px;line-height:1.9;}
+}
